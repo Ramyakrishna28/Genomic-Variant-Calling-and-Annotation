@@ -73,3 +73,17 @@ Genomic-Variant-Calling-and-Annotation/
 ├── variant_calling.py      # GATK-based variant calling workflow
 ├── variant_annotation.py   # ANNOVAR-based annotation and database integration
 └── README.md               # Pipeline documentation
+
+| Tool                 | Role                                        |
+| -------------------- | ------------------------------------------- |
+| **FastQC**           | Quality assessment of raw reads             |
+| **Trimmomatic**      | Adapter and low-quality read trimming       |
+| **BWA**              | Alignment of reads to the reference genome  |
+| **SAMtools**         | File conversion, sorting, and indexing      |
+| **GATK**             | Variant discovery and filtering             |
+| **ANNOVAR**          | Variant annotation and interpretation       |
+| **wget / sed / awk** | Data download and file formatting utilities |
+
+
+
+
