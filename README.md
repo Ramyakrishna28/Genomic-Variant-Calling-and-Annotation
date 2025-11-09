@@ -69,8 +69,7 @@ The annotated results provide insights into variant impact, gene function, and c
 ## Repository Structure
 Genomic-Variant-Calling-and-Annotation/
 │
-├── preprocessing.py        # Environment setup, QC, trimming, alignment
-├── variant_calling.py      # GATK-based variant calling workflow
-├── variant_annotation.py   # ANNOVAR-based annotation and database integration
-└── README.md               # Pipeline documentation
-
+├── preprocessing.py      
+├── variant_calling.py     
+├── variant_annotation.py   
+└── README.md              
