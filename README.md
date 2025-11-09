@@ -1,34 +1,75 @@
 # Genomic-Variant-Calling-and-Annotation
-This repository contains scripts and tools for performing genomic variant calling, annotation, and analysis for obesity-related genetic studies. The workflow involves quality control, trimming, alignment, variant calling, and annotation of variants based on multiple databases such as RefSeq, Ensembl, ClinVar, and dbSNP.
 
-Workflow Overview
-Setup the Environment:
+This repository presents a complete Genomic Variant Calling and Annotation Pipeline for identifying and interpreting obesity-associated genetic variants using Illumina sequencing data.
+The pipeline integrates preprocessing, alignment, variant calling, and annotation with multiple genomic databases for high-confidence variant interpretation.
 
-Create a Conda environment for the workflow.
-Install necessary dependencies including FastQC, Trimmomatic, BWA, Samtools, GATK, and ANNOVAR.
+Pipeline Overview
+Step 1: Environment Setup
 
-Quality Control (FastQC):
-Run FastQC to assess the quality of raw sequencing data (FASTQ files).
-Generate a detailed quality report for each sample.
+A dedicated Conda environment is created to ensure reproducibility and ease of dependency management.
+All required tools — FastQC, Trimmomatic, BWA, SAMtools, GATK, and ANNOVAR — are installed within the environment.
 
-Trimming (Trimmomatic):
-Perform read trimming to remove adapters and low-quality bases using Trimmomatic.
+Step 2: Quality Control
 
-Alignment (BWA):
-Build a reference genome index using BWA.
-Align the trimmed reads to the reference genome using BWA MEM.
+Raw sequencing reads are assessed for quality using FastQC.
+The generated reports provide insights into base quality, GC content, and potential adapter contamination.
 
-Post-Alignment (Samtools):
-Convert the SAM files to BAM format.
-Sort and index the BAM files for downstream analysis.
-Perform QC checks on the BAM files using Samtools flagstat.
+Step 3: Trimming
 
-Variant Calling (GATK):
-Prepare the reference genome using Samtools and Picard.
-Use GATK HaplotypeCaller to call variants from aligned BAM files.
-Output the variant calls in VCF format.
+Low-quality bases and adapter sequences are removed using Trimmomatic, ensuring high-quality reads for alignment.
+This step enhances downstream variant calling accuracy.
 
-Variant Annotation (ANNOVAR):
-Convert VCF files to ANNOVAR input format.
-Annotate variants with gene names, disease associations, and known SNPs from RefSeq, Ensembl, ClinVar, and dbSNP databases.
-Output annotated variants in a comprehensive table format.
+Step 4: Reference Genome Preparation
+
+The GRCh38 reference genome is downloaded and indexed using BWA to prepare for alignment.
+This step ensures efficient and accurate mapping of trimmed reads to the reference.
+
+Step 5: Alignment
+
+Reads are aligned to the reference genome using BWA MEM.
+The resulting SAM files are converted, sorted, and indexed into BAM format using SAMtools.
+These cleaned, indexed BAM files are then used for variant discovery.
+
+Step 6: Variant Calling
+
+GATK HaplotypeCaller is used to identify SNPs and INDELs from aligned reads.
+The generated VCF files represent the raw variant calls for each sample.
+Additional indexing and dictionary creation steps ensure smooth integration with downstream tools.
+
+ Step 7: Variant Annotation
+
+Variants are annotated using ANNOVAR with multiple databases, including:
+RefSeq – Gene annotations
+Ensembl – Alternative gene models
+ClinVar – Disease associations
+dbSNP – Known variant identifiers
+The annotated results provide insights into variant impact, gene function, and known clinical associations.
+
+Key Tools & Dependencies
+Tool	Role
+FastQC	Quality assessment of raw reads
+Trimmomatic	Adapter and low-quality read trimming
+BWA	Alignment of reads to the reference genome
+SAMtools	File conversion, sorting, and indexing
+GATK	Variant discovery and filtering
+ANNOVAR	Variant annotation and interpretation
+wget / sed / awk	Data download and file formatting utilities
+
+Output Files
+File	Description
+sorted_aligned.bam	Cleaned and indexed alignment file
+SRR5936734_variants.vcf	Raw variant calls from GATK
+SRR5936734_annotated.hg38_multianno.txt	Fully annotated variant table with gene and clinical details
+
+Insights
+
+This workflow enables comprehensive analysis of genomic variants related to obesity, providing both biological and clinical interpretations.
+It can be adapted for other disease-specific genetic studies and integrated with downstream multiomics analyses.
+
+Repository Structure
+Genomic-Variant-Calling-and-Annotation/
+│
+├── preprocessing.py        # Environment setup, QC, trimming, alignment
+├── variant_calling.py      # GATK-based variant calling workflow
+├── variant_annotation.py   # ANNOVAR-based annotation and database integration
+└── README.md               # Pipeline documentation
