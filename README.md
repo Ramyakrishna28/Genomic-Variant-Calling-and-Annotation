@@ -65,3 +65,10 @@ Key Tools & Dependencies:
 | `SRR5936734_variants.vcf`                 | Raw variant calls from GATK                                  |
 | `SRR5936734_annotated.hg38_multianno.txt` | Fully annotated variant table with gene and clinical details |
 
+Repository Structure
+Genomic-Variant-Calling-and-Annotation/
+│
+├── preprocessing.py        # Environment setup, QC, trimming, alignment
+├── variant_calling.py      # GATK-based variant calling workflow
+├── variant_annotation.py   # ANNOVAR-based annotation and database integration
+└── README.md               # Pipeline documentation
