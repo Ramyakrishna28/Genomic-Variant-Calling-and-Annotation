@@ -68,6 +68,8 @@ The annotated results provide insights into variant impact, gene function, and c
 
 ## Repository Structure
 Genomic-Variant-Calling-and-Annotation/
+
+
 │
 ├── preprocessing.py      
 ├── variant_calling.py     
